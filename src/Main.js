@@ -10,7 +10,9 @@ class Main extends React.Component{
             </div>
             <div className="list-books-content">
               <div>
-                <BookList/>
+                <BookList title=" Currently Reading"/>
+                <BookList title="Want to Read"/>
+                <BookList title="Read"/>
               </div>
             </div>
           </div>
