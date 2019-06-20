@@ -24,7 +24,6 @@ class Search extends React.Component{
             } else {
                 this.setState({searchedBooks})
             }
-            this.setState({searchedBooks})
         })
     }else{
         this.setState({searchedBooks: []})
