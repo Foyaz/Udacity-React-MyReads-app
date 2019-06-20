@@ -3,6 +3,7 @@ import './App.css'
 import Search from './Search';
 import Main from './Main';
 import {Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -14,7 +15,9 @@ class BooksApp extends React.Component {
         <Route exact path='/' component={Main}/>
         <Route exact path='/search' component={Search}   />
       <div className="open-search">
-         {/* <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button> */}
+        <Link to='/search'>         
+        <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+        </Link>
       </div>
       </div>
     )
