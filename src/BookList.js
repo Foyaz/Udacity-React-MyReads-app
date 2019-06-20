@@ -16,7 +16,8 @@ class BookList extends React.Component{
                             .map(book => (
                                 <li key={book.id}>
                                     <Book
-                                     book ={book}/>
+                                     book ={book}
+                                     changeShelf={this.props.changeShelf}/>
                                 </li>
                              ))
                     }
@@ -34,7 +35,8 @@ class BookList extends React.Component{
                             .map(book => (
                                 <li key={book.id}>
                                     <Book 
-                                    book ={book}/>
+                                    book ={book}
+                                    changeShelf={this.props.changeShelf}/>
                                 </li>
                              ))
                     }
@@ -52,7 +54,8 @@ class BookList extends React.Component{
                             .map(book => (
                                 <li key={book.id}>
                                     <Book
-                                     book ={book}/>
+                                     book ={book}
+                                     changeShelf={this.props.changeShelf}/>
                                 </li>
                              ))
                     }

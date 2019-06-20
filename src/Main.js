@@ -11,11 +11,17 @@ class Main extends React.Component{
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({books})
-        }
-        )
+        })
     }
 
+    changeShelf = (book, shelf) => {
+        BooksAPI.update(book, shelf)
+        BooksAPI.getAll().then((books) => {
+            this.setState({books})
+        })    }
+
     render(){
+        console.log(this.state.books)
         return(
             <div className="list-books">
             <div className="list-books-title">
@@ -23,7 +29,9 @@ class Main extends React.Component{
             </div>
             <div className="list-books-content">
               <div>
-                  <BookList books={this.state.books}/>
+                  <BookList 
+                  books={this.state.books}
+                  changeShelf={this.changeShelf}/>
                 {/* <BookList books={this.state.books} title="Currently Reading"/>
                 <BookList books={this.state.books} title="Want to Read"/>
                 <BookList books={this.state.books} title="Read"/> */}
