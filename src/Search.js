@@ -19,6 +19,11 @@ class Search extends React.Component{
     viewSearchedBooks = (query) => {
         if (query) {
         search(query).then((searchedBooks) => {
+            if(searchedBooks.error){
+               this.setState({searchedBooks: []})
+            } else {
+                this.setState({searchedBooks})
+            }
             this.setState({searchedBooks})
         })
     }else{
