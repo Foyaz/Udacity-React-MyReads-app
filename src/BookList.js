@@ -17,7 +17,8 @@ class BookList extends React.Component{
                                 <li key={book.id}>
                                     <Book
                                      book ={book}
-                                     changeShelf={this.props.changeShelf}/>
+                                     changeShelf={this.props.changeShelf}
+                                     currentShelf={'currentlyReading'}/>
                                 </li>
                              ))
                     }
@@ -36,7 +37,8 @@ class BookList extends React.Component{
                                 <li key={book.id}>
                                     <Book 
                                     book ={book}
-                                    changeShelf={this.props.changeShelf}/>
+                                    changeShelf={this.props.changeShelf}
+                                    currentShelf={'wantToRead'}/>
                                 </li>
                              ))
                     }
@@ -55,7 +57,8 @@ class BookList extends React.Component{
                                 <li key={book.id}>
                                     <Book
                                      book ={book}
-                                     changeShelf={this.props.changeShelf}/>
+                                     changeShelf={this.props.changeShelf}
+                                     currentShelf={'read'}/>
                                 </li>
                              ))
                     }
