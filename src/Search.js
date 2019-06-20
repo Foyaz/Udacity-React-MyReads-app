@@ -36,7 +36,7 @@ class Search extends React.Component{
         <div className="search-books">
         <div className="search-books-bar">
             <Link to='/'>
-            <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+            <button className="close-search" >Close</button>
             </Link>
           <div className="search-books-input-wrapper">
             {/*
@@ -59,13 +59,23 @@ class Search extends React.Component{
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-              {this.state.searchedBooks.map(searchedBooks => (
-                  <li key={searchedBooks.id}>
-                      <Book
-                      book= {searchedBooks}
-                      />
-                  </li>
-              ))}
+              {this.state.searchedBooks.map(searchedBook => {
+                  let shelf = "none";
+                  this.props.books.map(book => (
+                      book.id === searchedBook.id ? 
+                      shelf = book.shelf : 
+                      ''
+                  ))
+                  return(
+                    <li key={searchedBook.id}>
+                    <Book
+                    book= {searchedBook}
+                    changeShelf={this.props.changeShelf}
+                    currentShelf={shelf}
+                    />
+                </li>
+                  )
+              })}
           </ol>
         </div>
       </div>

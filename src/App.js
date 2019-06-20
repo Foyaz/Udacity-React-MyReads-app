@@ -2,23 +2,35 @@ import React from 'react'
 import './App.css'
 import Search from './Search';
 import Main from './Main';
+import * as BooksAPI from './BooksAPI'
 import {Route} from 'react-router-dom'
-import {Link} from 'react-router-dom'
 
 class BooksApp extends React.Component {
-  state = {
-  }
+  state ={
+    books: [],
+}
 
+componentDidMount = () => {
+    BooksAPI.getAll().then((books) => {
+        this.setState({books})
+    })
+}
+
+changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    BooksAPI.getAll().then((books) => {
+        this.setState({books})
+    })
+}
   render() {
     return (
       <div className="app">
-        <Route exact path='/' component={Main}/>
-        <Route exact path='/search' component={Search}   />
-      <div className="open-search">
-        <Link to='/search'>         
-        <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-        </Link>
-      </div>
+        <Main
+        books = {this.state.books}
+        changeShelf = {this.changeShelf}/>
+        <Search
+        books = {this.state.books}
+        changeShelf={this.changeShelf}/>
       </div>
     )
   }

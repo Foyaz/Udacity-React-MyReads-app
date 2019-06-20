@@ -1,29 +1,11 @@
 import React from 'react'
 import BookList from './BookList'
-import * as BooksAPI from './BooksAPI'
-
+import {Link} from 'react-router-dom'
 
 class Main extends React.Component{
-    state ={
-        books: [],
-    }
-
-    componentDidMount() {
-        BooksAPI.getAll().then((books) => {
-            this.setState({books})
-        })
-    }
-
-    changeShelf = (book, shelf) => {
-        BooksAPI.update(book, shelf)
-        BooksAPI.getAll().then((books) => {
-            this.setState({books})
-        })
-    }
-
-    render(){
-        console.log(this.state.books)
+    render(){        
         return(
+            <>
             <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -31,15 +13,17 @@ class Main extends React.Component{
             <div className="list-books-content">
               <div>
                   <BookList 
-                  books={this.state.books}
-                  changeShelf={this.changeShelf}/>
-                {/* <BookList books={this.state.books} title="Currently Reading"/>
-                <BookList books={this.state.books} title="Want to Read"/>
-                <BookList books={this.state.books} title="Read"/> */}
+                  books={this.props.books}
+                  changeShelf={this.props.changeShelf}/>
               </div>
             </div>
           </div>
-
+          <div className="open-search">
+        <Link to='/search'>         
+        <button>Add a book</button>
+        </Link>
+      </div>
+          </>
         )
     }
 }
