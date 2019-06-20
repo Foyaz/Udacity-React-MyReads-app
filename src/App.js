@@ -25,16 +25,19 @@ changeShelf = (book, shelf) => {
   render() {
     return (
       <div className="app">
+
         <Route exact path='/' render = {() => (
           <Main
           books = {this.state.books}
           changeShelf = {this.changeShelf}/>
         )}/>
+
         <Route exact path='/search' render = {() => (
           <Search
           books = {this.state.books}
           changeShelf = {this.changeShelf}/>
         )}/>
+        
         </div>
     )
   }
