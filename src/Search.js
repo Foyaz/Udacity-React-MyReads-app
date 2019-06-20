@@ -1,8 +1,33 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { search } from './BooksAPI';
+import Book from './Book';
 
 class Search extends React.Component{
-render(){
+    state ={
+        query: "",
+        searchedBooks: []
+    }
+
+    updateQuery =(query)=>{
+        this.setState({
+            query
+        })
+        this.viewSearchedBooks(query);
+    }
+
+    viewSearchedBooks = (query) => {
+        if (query) {
+        search(query).then((searchedBooks) => {
+            this.setState({searchedBooks})
+        })
+    }else{
+        this.setState({searchedBooks: []})
+    }
+    }
+
+
+    render(){
     return(
         <div className="search-books">
         <div className="search-books-bar">
@@ -19,13 +44,25 @@ render(){
               you don't find a specific author or title. Every search is limited by search terms.
             */}
             <form>
-            <input type="text" placeholder="Search by title or author"/>
+            <input 
+            type="text" 
+            placeholder="Search by title or author" 
+            value={this.state.query}
+            onChange={(event) => {this.updateQuery(event.target.value)}}/>
             </form>
 
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+              {this.state.searchedBooks.map(searchedBooks => (
+                  <li key={searchedBooks.id}>
+                      <Book
+                      book= {searchedBooks}
+                      />
+                  </li>
+              ))}
+          </ol>
         </div>
       </div>
     )
